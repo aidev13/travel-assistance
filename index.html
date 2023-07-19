@@ -22,23 +22,37 @@
     <div class="grid-x grid-padding-x align-center-middle text-center" style="height: 200px;">
         <form>
             <div class="grid-container">
-              <div class="grid-x grid-padding-x">
-                <div class="medium-6 cell">
-                  <label>Start Location
-                    <input type="text" placeholder="Enter Start Location">
-                  </label>
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-6 cell">
+                        <label>Start Location
+                            <input id="startLocation" type="text" placeholder="Enter Start Location">
+                        </label>
+                    </div>
+                    <div class="medium-6 cell">
+                        <label>End Location
+                            <input id="endLocation" type="text" placeholder="Enter End Location">
+                        </label>
+                    </div>
                 </div>
-                <div class="medium-6 cell">
-                  <label>End Location
-                    <input type="text" placeholder="Enter End Location">
-                  </label>
-                </div>
-              </div>
             </div>
             <button class="hollow button" href="#"> Search </button>
         </form>
     </div>
 
+    <!-- Do not change parent div uness we have team approvel -->
+    <div class="grid-x grid-margin-x text-center">
+        <!-- This is where the distance and time API goes -->
+        <div class="cell medium-6 large-4">
+            <h4>Distance and Time</h4>
+        </div>
+
+        <!-- This is where the weather API goes -->
+        <div class="cell medium-6 large-8">
+            <h4>Current Weather</h4>
+            <div id="weatherData"></div>
+        </div>
+
+    </div>
 
 
     <!-- Compressed JavaScript -->
