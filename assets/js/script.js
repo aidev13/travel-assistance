@@ -1,11 +1,12 @@
 var apiKey = '59a3c0db12e1f890c3e94259c9168e7f'
 var startInput = document.getElementById('startLocation')
+var endInput = document.getElementById('endLocation')
 console.log(startInput)
-var searchBtn = document.querySelector('button')
+var searchBtn = document.getElementById('searchBtn')
 
 
 // Fetch Weather API for current weather
-function fetchStartLocationWeather(cityName) {
+function fetchLocationWeather(cityName) {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey)
         .then(function (response) {
             return response.json()
@@ -17,9 +18,17 @@ function fetchStartLocationWeather(cityName) {
 
 }
 
+
+
+
+
+
 searchBtn.addEventListener('click', function (event) {
-    var city = startInput.value
+    var startLocationValue = startInput.value
+    var endLocationValue = endInput.value
     event.preventDefault()
-    fetchStartLocationWeather(city)
+    fetchLocationWeather(startLocationValue)
+    fetchLocationWeather(endLocationValue)
+    console.log(startLocationValue, endLocationValue)
 
 })
