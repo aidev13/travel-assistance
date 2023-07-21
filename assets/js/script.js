@@ -32,6 +32,7 @@ function getDistance(origin, destination) {
 }
 
 // Fetch Weather API for current weather
+//TODO: Verify if fetchStartLocationWeather is deprecated, delete if necessary
 function fetchStartLocationWeather(cityName) {
   fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey)
     .then(function (response) {
@@ -42,13 +43,10 @@ function fetchStartLocationWeather(cityName) {
     });
 }
 
-searchBtn.addEventListener("click", function (event) {
-  var startCity = startInput.value;
-  var endCity = endInput.value;
-  event.preventDefault();
-  fetchStartLocationWeather(startCity);
-  getDistance(startCity, endCity);
-});
+// searchBtn.addEventListener("click", function (event) {
+//   event.preventDefault();
+  
+// });
 
 // fetch(
 
@@ -69,7 +67,7 @@ searchBtn.addEventListener("click", function (event) {
 
 
 // Fetch Weather API for current weather
-// TODO: change cityName 
+// TODO:change cityName 
 function fetchLocationWeather(inputValue, elementId) {
   var url = ''
   var re = /^\d{5}$/
@@ -94,21 +92,36 @@ function fetchLocationWeather(inputValue, elementId) {
       var weatherElement = document.getElementById(elementId)
 
       weatherElement.innerHTML = "<h5>City: " + locationCity + "</h5>" + "<li>Current Temp: " + currentTemp + "</li>" + "<li>High Temp: " + maxTemp + "</li>" + "<li>Low Temp: " + lowTemp + "</li>"
-      console.log(currentTemp)
 
 
     })
 
 }
-const re = /\d{5}/
 
 
 searchBtn.addEventListener('click', function (event) {
+  event.preventDefault()
   var startLocationValue = startInput.value
   var endLocationValue = endInput.value
-  event.preventDefault()
-  fetchLocationWeather(startLocationValue, 'startWeatherData')
-  fetchLocationWeather(endLocationValue, 'endWeatherData')
-  console.log(startLocationValue, endLocationValue)
+
+  var startCityStateArray = startLocationValue.split(', ')
+  var endCityStateArray = endLocationValue.split(', ')
+
+  // startCity could be a zip code, see 'fetchLocationWeather' function
+  var startCity = startCityStateArray[0]
+  // endCity could be a zip code, see 'fetchLocationWeather' function
+  var endCity = endCityStateArray[0]
+
+  var startState = startCityStateArray[1]
+  var endState = endCityStateArray[1]
+  var startGoogleApiQuery = startState ? startLocationValue : startCity
+  var endGoogleApiQuery = endState ? endLocationValue : endCity
+
+  // Google API
+  // fetchStartLocationWeather(startGoogleApiQuery);
+  getDistance(startGoogleApiQuery, endGoogleApiQuery);
+  // Openweathermap API
+  fetchLocationWeather(startCity, 'startWeatherData')
+  fetchLocationWeather(endCity, 'endWeatherData')
 
 })
