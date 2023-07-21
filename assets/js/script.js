@@ -67,17 +67,13 @@ function fetchStartLocationWeather(cityName) {
 
 
 // Fetch Weather API for current weather
-// TODO:change cityName 
 function fetchLocationWeather(inputValue, elementId) {
-  var url = ''
+  var zipUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' + inputValue + '&units=imperial&appid=' + apiKey 
+  var cityUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + inputValue + '&units=imperial&appid=' + apiKey
   var re = /^\d{5}$/
   var isZip = re.test(inputValue)
-  if (isZip) {
-    url = 'https://api.openweathermap.org/data/2.5/weather?zip=' + inputValue + '&units=imperial&appid=' + apiKey
-  } else {
-    url = 'https://api.openweathermap.org/data/2.5/weather?q=' + inputValue + '&units=imperial&appid=' + apiKey
-  }
-
+  var url = isZip ? zipUrl : cityUrl
+  
   fetch(url)
     .then(function (response) {
       return response.json()
