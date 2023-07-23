@@ -1,0 +1,17 @@
+#logo {
+    display: inline;
+    width: 300px;
+    margin-bottom: 25px;
+}
+
+h6 {
+    text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+
+    #logo {
+        width: 200px;
+    }
+    
+}
