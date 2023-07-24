@@ -16,9 +16,14 @@ function getDistance(origin, destination) {
     .then(function (json) {
       console.log(json);
       distanceData.innerHTML = origin + " to " + destination + ": " + json.rows[0].elements[0].distance.text + ", " + json.rows[0].elements[0].duration.text;
+
+      // distance and time title
+    var distanceAndTimeTitle = document.getElementById('distanceTime')
+    distanceAndTimeTitle.innerText = "Distance and Time"
     })
     .catch(function (error) {
       console.log(error);
+
     });
 }
 
@@ -38,12 +43,12 @@ function fetchStartLocationWeather(cityName) {
 // Fetch Weather API for current weather
 //TODO research weather api for state param for future improvements
 function fetchLocationWeather(inputValue, elementId) {
-  var zipUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' + inputValue + '&units=imperial&appid=' + apiKey 
+  var zipUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' + inputValue + '&units=imperial&appid=' + apiKey
   var cityUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + inputValue + '&units=imperial&appid=' + apiKey
   var re = /^\d{5}$/
   var isZip = re.test(inputValue)
   var url = isZip ? zipUrl : cityUrl
-  
+
   fetch(url)
     .then(function (response) {
       return response.json()
@@ -56,6 +61,10 @@ function fetchLocationWeather(inputValue, elementId) {
       var lowTemp = getWeather.main.temp_min;
       var locationCity = getWeather.name
       var weatherElement = document.getElementById(elementId)
+      //title for weather api
+      var weatherTitle = document.getElementById('weatherTitle')
+      weatherTitle.innerText = 'Current Weather'
+
 
       weatherElement.innerHTML = "<h5>City: " + locationCity + "</h5>" + "<li>Current Temp: " + currentTemp + "</li>" + "<li>High Temp: " + maxTemp + "</li>" + "<li>Low Temp: " + lowTemp + "</li>"
 
