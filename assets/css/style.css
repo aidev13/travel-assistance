@@ -8,6 +8,11 @@
 h6 {
     text-align: center;
 }
+body {
+    background-image: url(/assets/images/bg-map.jpg);
+    background-color: rgb(228, 228, 228);
+  background-blend-mode: screen;
+}
 
 
 @media screen and (max-width: 640px) {
