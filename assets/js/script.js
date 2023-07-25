@@ -6,6 +6,13 @@ var endInput = document.getElementById("endLocation");
 var distanceData = document.getElementById("distancetimeData");
 var startData = document.getElementById('startWeatherData')
 var searchBtn = document.getElementById('searchBtn')
+var searchedArray = []
+
+
+// function clientSideStorage() {
+//   localStorage.setItem("searched", searchedArray)
+  
+// 
 
 function getDistance(origin, destination) {
   fetch(proxyUrl + encodeURIComponent("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destination + "&units=imperial&key=") + distanceAPIkey)

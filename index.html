@@ -21,7 +21,16 @@
     <header class="text-center">
         <img id="logo" src="/assets/images/Travel assistance.png" alt="Travel Logo"/>
     </header>
-    <h6>To begin: Enter your start and end locations!</h6>
+    <a href="#openModal-about">Instructions</a>
+<!--modals-->
+  <div id="openModal-about" class="modalDialog">
+      <div>
+         <a href="#close" title="Close" class="close">X</a>
+         <h2>How to begin...</h2>
+         <p>To begin, Enter the start and end location to get your travel information!.</p>
+       </div>
+   </div>
+
     <div class="grid-x grid-padding-x align-center-middle text-center" style="height: 225px;">
         <form>
             <div class="grid-container">
@@ -43,15 +52,15 @@
     </div>
 
     <!-- Do not change parent div uness we have team approvel -->
-    <div class="grid-x grid-margin-x text-center">
+    <div class="grid-x grid-margin-x text-center justify-content: space-around" >
         <!-- This is where the distance and time API goes -->
-        <div class="cell medium-6 large-6">
+        <div class="cell medium-6 large-6 distanceTimeCard ">
             <h4 id="distanceTime"></h4>
             <h5 id="distancetimeData"></h5>
         </div>
 
         <!-- This is where the weather API goes -->
-        <div class="cell medium-6 large-6">
+        <div class="cell medium-6 large-6 weatherCard">
             <h4 id="weatherTitle"></h4>
             <div id="startWeatherData"></div>
             <div id="endWeatherData"></div>
@@ -61,7 +70,7 @@
     </div>
 
 
-    <!-- Compressed JavaScript -->
+    <!-- Compressed JavaScript --> 
     <!-- <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"
         crossorigin="anonymous"></script> -->
     <!-- Custom JS -->
