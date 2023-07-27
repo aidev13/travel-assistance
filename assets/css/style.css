@@ -163,3 +163,9 @@ body {
     font-size: 18px;
     color: rgb(255, 255, 255);
   }
+
+  #searchIcon {
+    display: flex;
+    justify-content: center;
+
+  }

@@ -9,10 +9,10 @@ var searchBtn = document.getElementById('searchBtn')
 var searchedArray = []
 
 
-// function clientSideStorage() {
-//   localStorage.setItem("searched", searchedArray)
-  
-// 
+function clientSideStorage() {
+  localStorage.setItem("searched", searchedArray)
+
+}
 
 function getDistance(origin, destination) {
   fetch(proxyUrl + encodeURIComponent("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destination + "&units=imperial&key=") + distanceAPIkey)
@@ -110,9 +110,10 @@ searchBtn.addEventListener('click', function (event) {
 // sidebar JS
 var mini = true;
 document.getElementById("sidebarTitle").style.display = "none";
+document.getElementById("searchIcon").style.display = "";
 
 function toggleSidebar() {
-
+  
   if (mini) {
     console.log("opening sidebar");
     document.getElementById("mySidebar").style.width = "250px";
@@ -124,9 +125,13 @@ function toggleSidebar() {
     document.getElementById("main").style.marginLeft = "65px";
     this.mini = true;
   }
+  
   if (mini) {
     document.getElementById("sidebarTitle").style.display = "none";
-  } else 
-  document.getElementById("sidebarTitle").style.display = "";
+    document.getElementById("searchIcon").style.display = "";
+    
+  } else {
+    document.getElementById("searchIcon").style.display = "none";
+    document.getElementById("sidebarTitle").style.display = "";
+  }
 }
-  
