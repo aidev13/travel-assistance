@@ -6,13 +6,22 @@ var endInput = document.getElementById("endLocation");
 var distanceData = document.getElementById("distancetimeData");
 var startData = document.getElementById('startWeatherData')
 var searchBtn = document.getElementById('searchBtn')
-var searchedArray = []
+// var searchedArray = []
+// const savedKeys = document.getElementById("savedKeyValues")
 
 
-function clientSideStorage() {
-  localStorage.setItem("searched", searchedArray)
+// function clientSideStorage() {
+//   localStorage.setItem("startLocationKey", startInput.value)
+//   localStorage.setItem('endLocationKey', endInput.value)
 
-}
+//   var grabStartKey = localStorage.getItem('startLocationKey')
+//   var grabStartKeyBtn = document.createElement('button')
+//   var sideBar = document.getElementById('mySidebar')
+
+//   grabStartKeyBtn.innerText = grabStartKey
+// document.sideBar.appendChild(grabStartKeyBtn)
+  
+// }
 
 function getDistance(origin, destination) {
   fetch(proxyUrl + encodeURIComponent("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destination + "&units=imperial&key=") + distanceAPIkey)
@@ -25,8 +34,8 @@ function getDistance(origin, destination) {
       distanceData.innerHTML = origin + " to " + destination + ": " + json.rows[0].elements[0].distance.text + ", " + json.rows[0].elements[0].duration.text;
 
       // distance and time title
-    var distanceAndTimeTitle = document.getElementById('distanceTime')
-    distanceAndTimeTitle.innerText = "Distance and Time"
+      var distanceAndTimeTitle = document.getElementById('distanceTime')
+      distanceAndTimeTitle.innerText = "Distance and Time"
     })
     .catch(function (error) {
       console.log(error);
@@ -104,6 +113,7 @@ searchBtn.addEventListener('click', function (event) {
   // Openweathermap API
   fetchLocationWeather(startCity, 'startWeatherData')
   fetchLocationWeather(endCity, 'endWeatherData')
+  clientSideStorage()
 
 })
 
@@ -113,7 +123,7 @@ document.getElementById("sidebarTitle").style.display = "none";
 document.getElementById("searchIcon").style.display = "";
 
 function toggleSidebar() {
-  
+
   if (mini) {
     console.log("opening sidebar");
     document.getElementById("mySidebar").style.width = "250px";
@@ -125,11 +135,11 @@ function toggleSidebar() {
     document.getElementById("main").style.marginLeft = "65px";
     this.mini = true;
   }
-  
+
   if (mini) {
     document.getElementById("sidebarTitle").style.display = "none";
     document.getElementById("searchIcon").style.display = "";
-    
+
   } else {
     document.getElementById("searchIcon").style.display = "none";
     document.getElementById("sidebarTitle").style.display = "";
