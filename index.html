@@ -10,6 +10,8 @@
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
         crossorigin="anonymous">
+    <!-- sidebar -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
@@ -17,20 +19,27 @@
 
 </head>
 
-<body>
-    
+<body id="main">
+
     <header class="text-center">
-        <img id="logo" src="./assets/images/taassist.png" alt="Travel Logo"/>
+        <img id="logo" src="./assets/images/taassist.png" alt="Travel Logo" />
     </header>
+
+    <!-- sidebar code -->
+    <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
+      
+    </div>
+
+    <!--modal start-->
     <a href="#openModal-about">Instructions</a>
-<!--modals-->
-  <div id="openModal-about" class="modalDialog">
-      <div>
-         <a href="#close" title="Close" class="close">Close</a>
-         <h2>How to begin...</h2>
-         <p>To begin, Enter the start and end location to get your travel information!.</p>
-       </div>
-   </div>
+    <div id="openModal-about" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">Close</a>
+            <h2>How to begin...</h2>
+            <p>To begin, Enter the start and end location to get your travel information!.</p>
+        </div>
+    </div>
+    <!-- Modal end -->
 
     <div class="grid-x grid-padding-x align-center-middle text-center" style="height: 225px;">
         <form>
@@ -53,7 +62,7 @@
     </div>
 
     <!-- Do not change parent div uness we have team approvel -->
-    <div class="grid-x grid-margin-x text-center justify-content: space-around" >
+    <div class="grid-x grid-margin-x text-center justify-content: space-around">
         <!-- This is where the distance and time API goes -->
         <div class="cell medium-6 large-6 distanceTimeCard ">
             <h4 id="distanceTime"></h4>
@@ -71,7 +80,7 @@
     </div>
 
 
-    <!-- Compressed JavaScript --> 
+    <!-- Compressed JavaScript -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"
         crossorigin="anonymous"></script> -->
     <!-- Custom JS -->
