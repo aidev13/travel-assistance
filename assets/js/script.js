@@ -109,8 +109,10 @@ searchBtn.addEventListener('click', function (event) {
 
 // sidebar JS
 var mini = true;
+document.getElementById("sidebarTitle").style.display = "none";
 
 function toggleSidebar() {
+
   if (mini) {
     console.log("opening sidebar");
     document.getElementById("mySidebar").style.width = "250px";
@@ -118,8 +120,13 @@ function toggleSidebar() {
     this.mini = false;
   } else {
     console.log("closing sidebar");
-    document.getElementById("mySidebar").style.width = "85px";
-    document.getElementById("main").style.marginLeft = "85px";
+    document.getElementById("mySidebar").style.width = "65px";
+    document.getElementById("main").style.marginLeft = "65px";
     this.mini = true;
   }
+  if (mini) {
+    document.getElementById("sidebarTitle").style.display = "none";
+  } else 
+  document.getElementById("sidebarTitle").style.display = "";
 }
+  

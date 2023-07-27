@@ -157,3 +157,7 @@ body {
     }
   }
   /* end sidebar css */
+
+  #sidebarTitle {
+    color: rgb(255, 0, 0);
+  }
