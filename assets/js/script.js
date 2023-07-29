@@ -9,7 +9,7 @@ var searchBtn = document.getElementById('searchBtn')
 var startValue = startInput.value
 var endValue = endInput.value
 // console.log(startValue)
-// var searchedArray = []
+var searchedArray = []
 // const savedKeys = document.getElementById("savedKeyValues")
 
 
@@ -28,9 +28,27 @@ function clientSideStorage(startValue, endValue) {
   localStorage.setItem('startKey', JSON.stringify(storedStartValue))
   localStorage.setItem('endKey', JSON.stringify(storedEndValue))
 }
+
+
+var empty = 'Get Started'
 // creating button
-var lastStartSearch = JSON.parse(localStorage.getItem('startKey')).pop()
-var lastEndSearch = JSON.parse(localStorage.getItem('endKey')).pop()
+var lastStartSearch = JSON.parse(localStorage.getItem('startKey')) || []
+var lastEndSearch = JSON.parse(localStorage.getItem('endKey')) || []
+
+console.log(lastStartSearch)
+console.log(lastEndSearch)
+
+//make a function for this
+for (var i = 0; i < 1; i++) {
+if (lastStartSearch && lastEndSearch === null) {
+lastEndSearch.innerText = [i]
+lastStartSearch.innerText = [i]
+} else {
+  lastStartSearch.pop()
+  lastEndSearch.pop()
+}
+}
+
 var sidebarBtnStart = document.createElement('button')
 var sidebarBtnEnd = document.createElement('button')
 sidebarBtnStart.classList.add("sidebarBtnStyle")
