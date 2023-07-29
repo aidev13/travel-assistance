@@ -19,48 +19,56 @@ var searchedArray = []
 function clientSideStorage(startValue, endValue) {
   var startValue = startInput.value
   var endValue = endInput.value
-  let storedStartValue = JSON.parse(localStorage.getItem('startKey')) || []
-  let storedEndValue = JSON.parse(localStorage.getItem('endKey')) || []
+  // let storedStartValue = localStorage.getItem('startKey')
+  // let storedEndValue = localStorage.getItem('endKey')
 
-  storedStartValue.push(startValue)
-  storedEndValue.push(endValue)
-
-  localStorage.setItem('startKey', JSON.stringify(storedStartValue))
-  localStorage.setItem('endKey', JSON.stringify(storedEndValue))
+  localStorage.setItem('startKey', startValue) 
+  localStorage.setItem('endKey', endValue)
 }
 
 
-var empty = 'Get Started'
-// creating button
-var lastStartSearch = JSON.parse(localStorage.getItem('startKey')) || []
-var lastEndSearch = JSON.parse(localStorage.getItem('endKey')) || []
+// var empty = 'Get Started'
+// var lastStartSearch = (localStorage.getItem('startKey')) || 'N/A'
+// var lastEndSearch = (localStorage.getItem('endKey')) || 'N/A'
 
-console.log(lastStartSearch)
-console.log(lastEndSearch)
+// console.log(lastStartSearch)
+// console.log(lastEndSearch)
 
-//make a function for this
-for (var i = 0; i < 1; i++) {
-if (lastStartSearch && lastEndSearch === null) {
-lastEndSearch.innerText = [i]
-lastStartSearch.innerText = [i]
-} else {
-  lastStartSearch.pop()
-  lastEndSearch.pop()
+
+// var sidebarStartEl = document.createElement('li')
+// var sidebarEndEl = document.createElement('li')
+// sidebarStartEl.classList.add("sidebarBtnStyle")
+// sidebarEndEl.classList.add("sidebarBtnStyle")
+// sidebarStartEl.innerHTML = "Start: " + lastStartSearch
+// sidebarEndEl.innerHTML = "End: " + lastEndSearch
+// // getting html id
+// var area = document.getElementById('areaForSearchedResultsButtons')
+// area.appendChild(sidebarStartEl)
+// area.appendChild(sidebarEndEl)
+
+function attack() {
+  var lastStartSearch = (localStorage.getItem('startKey')) || 'N/A'
+  var lastEndSearch = (localStorage.getItem('endKey')) || 'N/A'
+
+  console.log(lastStartSearch)
+  console.log(lastEndSearch)
+
+
+  var sidebarStartEl = document.createElement('li')
+  var sidebarEndEl = document.createElement('li')
+  var hLine = document.createElement('hr')
+  hLine.classList.add('hr')
+  sidebarStartEl.classList.add("sidebarBtnStyle")
+  sidebarEndEl.classList.add("sidebarBtnStyle")
+  sidebarStartEl.innerHTML = "Start: " + lastStartSearch
+  sidebarEndEl.innerHTML = "End: " + lastEndSearch
+  
+  var area = document.getElementById('areaForSearchedResultsButtons')
+  area.appendChild(sidebarStartEl)
+  area.appendChild(sidebarEndEl)
+  area.appendChild(hLine)
+
 }
-}
-
-var sidebarBtnStart = document.createElement('button')
-var sidebarBtnEnd = document.createElement('button')
-sidebarBtnStart.classList.add("sidebarBtnStyle")
-sidebarBtnEnd.classList.add("sidebarBtnStyle")
-sidebarBtnStart.innerHTML = "Start: " + lastStartSearch
-sidebarBtnEnd.innerHTML = "End: " + lastEndSearch
-// getting html id
-var area = document.getElementById('areaForSearchedResultsButtons')
-area.appendChild(sidebarBtnStart)
-area.appendChild(sidebarBtnEnd)
-
-
 
 // ----- LocalStorage end -----
 
@@ -156,8 +164,7 @@ searchBtn.addEventListener('click', function (event) {
   fetchLocationWeather(startCity, 'startWeatherData')
   fetchLocationWeather(endCity, 'endWeatherData')
   clientSideStorage()
-  // sidebarSeachedBtn()
-
+  attack()
 
 })
 
@@ -165,9 +172,10 @@ searchBtn.addEventListener('click', function (event) {
 var mini = true;
 document.getElementById("sidebarTitle").style.display = "none";
 document.getElementById("searchIcon").style.display = "";
-sidebarBtnStart.style.display = "none";
-sidebarBtnEnd.style.display = "none";
+// sidebarStartEl.style.display = "none";
+// sidebarEndEl.style.display = "none";
 document.querySelector('hr').style.display = 'none';
+document.getElementById('areaForSearchedResultsButtons').style.display = 'none';
 
 function toggleSidebar() {
 
@@ -177,8 +185,9 @@ function toggleSidebar() {
     document.getElementById("main").style.marginLeft = "250px";
     document.getElementById("searchIcon").style.display = "none";
     document.getElementById("sidebarTitle").style.display = "";
-    sidebarBtnStart.style.display = "";
-    sidebarBtnEnd.style.display = "";
+    // sidebarStartEl.style.display = "";
+    // sidebarEndEl.style.display = "";
+    document.getElementById('areaForSearchedResultsButtons').style.display = '';
     document.querySelector('hr').style.display = '';
     this.mini = false;
   } else {
@@ -187,8 +196,9 @@ function toggleSidebar() {
     document.getElementById("main").style.marginLeft = "65px";
     document.getElementById("sidebarTitle").style.display = "none";
     document.getElementById("searchIcon").style.display = "";
-    sidebarBtnStart.style.display = "none";
-    sidebarBtnEnd.style.display = "none";
+    // sidebarStartEl.style.display = "none";
+    // sidebarEndEl.style.display = "none";
+    document.getElementById('areaForSearchedResultsButtons').style.display = 'none';
     document.querySelector('hr').style.display = 'none';
     this.mini = true;
   }
