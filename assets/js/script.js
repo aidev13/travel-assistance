@@ -6,22 +6,39 @@ var endInput = document.getElementById("endLocation");
 var distanceData = document.getElementById("distancetimeData");
 var startData = document.getElementById('startWeatherData')
 var searchBtn = document.getElementById('searchBtn')
+
+// console.log(startValue)
 // var searchedArray = []
 // const savedKeys = document.getElementById("savedKeyValues")
 
 
-// function clientSideStorage() {
-//   localStorage.setItem("startLocationKey", startInput.value)
-//   localStorage.setItem('endLocationKey', endInput.value)
 
-//   var grabStartKey = localStorage.getItem('startLocationKey')
-//   var grabStartKeyBtn = document.createElement('button')
-//   var sideBar = document.getElementById('mySidebar')
+// ----- LocalStorage begin -----
 
-//   grabStartKeyBtn.innerText = grabStartKey
-// document.sideBar.appendChild(grabStartKeyBtn)
-  
-// }
+function clientSideStorage(startValue, endValue) {
+  var startValue = startInput.value
+  var endValue = endInput.value
+  let storedStartValue = JSON.parse(localStorage.getItem('startKey')) || []
+  let storedEndValue = JSON.parse(localStorage.getItem('endKey')) || []
+
+  storedStartValue.push(startValue)
+  storedEndValue.push(endValue)
+
+  localStorage.setItem('startKey', JSON.stringify(storedStartValue))
+  localStorage.setItem('endKey', JSON.stringify(storedEndValue))
+}
+
+// creating button
+var sidebarBtn = document.createElement('button')
+sidebarBtn.classList.add("sidebarBtnStyle")
+sidebarBtn.innerText = "Placeholder"
+// getting html id
+var area = document.getElementById('areaForSearchedResultsButtons')
+area.appendChild(sidebarBtn)
+
+
+// ----- LocalStorage end -----
+
 
 function getDistance(origin, destination) {
   fetch(proxyUrl + encodeURIComponent("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destination + "&units=imperial&key=") + distanceAPIkey)
@@ -114,6 +131,8 @@ searchBtn.addEventListener('click', function (event) {
   fetchLocationWeather(startCity, 'startWeatherData')
   fetchLocationWeather(endCity, 'endWeatherData')
   clientSideStorage()
+  sidebarSeachedBtn()
+
 
 })
 
@@ -121,6 +140,7 @@ searchBtn.addEventListener('click', function (event) {
 var mini = true;
 document.getElementById("sidebarTitle").style.display = "none";
 document.getElementById("searchIcon").style.display = "";
+sidebarBtn.style.display = "none";
 
 function toggleSidebar() {
 
@@ -128,20 +148,17 @@ function toggleSidebar() {
     console.log("opening sidebar");
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("searchIcon").style.display = "none";
+    document.getElementById("sidebarTitle").style.display = "";
+    sidebarBtn.style.display = "";
     this.mini = false;
   } else {
     console.log("closing sidebar");
     document.getElementById("mySidebar").style.width = "65px";
     document.getElementById("main").style.marginLeft = "65px";
-    this.mini = true;
-  }
-
-  if (mini) {
     document.getElementById("sidebarTitle").style.display = "none";
     document.getElementById("searchIcon").style.display = "";
-
-  } else {
-    document.getElementById("searchIcon").style.display = "none";
-    document.getElementById("sidebarTitle").style.display = "";
+    sidebarBtn.style.display = "none";
+    this.mini = true;
   }
 }

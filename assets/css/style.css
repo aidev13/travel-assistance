@@ -169,3 +169,20 @@ body {
     justify-content: center;
 
   }
+
+  .sidebarBtnStyle {
+    display: flex;
+    margin: auto;
+    margin-top: 25px;
+    text-align: center;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 7px 5px;
+}
+
+.sidebarBtnStyle:hover {
+border-color: #1779ba;
+}
