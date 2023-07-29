@@ -154,7 +154,7 @@ document.querySelector('hr').style.display = 'none';
 function toggleSidebar() {
 
   if (mini) {
-    console.log("opening sidebar");
+    // console.log("opening sidebar");
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
     document.getElementById("searchIcon").style.display = "none";
@@ -164,7 +164,7 @@ function toggleSidebar() {
     document.querySelector('hr').style.display = '';
     this.mini = false;
   } else {
-    console.log("closing sidebar");
+    // console.log("closing sidebar");
     document.getElementById("mySidebar").style.width = "65px";
     document.getElementById("main").style.marginLeft = "65px";
     document.getElementById("sidebarTitle").style.display = "none";
