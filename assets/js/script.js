@@ -6,7 +6,8 @@ var endInput = document.getElementById("endLocation");
 var distanceData = document.getElementById("distancetimeData");
 var startData = document.getElementById('startWeatherData')
 var searchBtn = document.getElementById('searchBtn')
-
+var startValue = startInput.value
+var endValue = endInput.value
 // console.log(startValue)
 // var searchedArray = []
 // const savedKeys = document.getElementById("savedKeyValues")
@@ -27,14 +28,20 @@ function clientSideStorage(startValue, endValue) {
   localStorage.setItem('startKey', JSON.stringify(storedStartValue))
   localStorage.setItem('endKey', JSON.stringify(storedEndValue))
 }
-
 // creating button
-var sidebarBtn = document.createElement('button')
-sidebarBtn.classList.add("sidebarBtnStyle")
-sidebarBtn.innerText = "Placeholder"
+var lastStartSearch = JSON.parse(localStorage.getItem('startKey')).pop()
+var lastEndSearch = JSON.parse(localStorage.getItem('endKey')).pop()
+var sidebarBtnStart = document.createElement('button')
+var sidebarBtnEnd = document.createElement('button')
+sidebarBtnStart.classList.add("sidebarBtnStyle")
+sidebarBtnEnd.classList.add("sidebarBtnStyle")
+sidebarBtnStart.innerHTML = "Start: " + lastStartSearch
+sidebarBtnEnd.innerHTML = "End: " + lastEndSearch
 // getting html id
 var area = document.getElementById('areaForSearchedResultsButtons')
-area.appendChild(sidebarBtn)
+area.appendChild(sidebarBtnStart)
+area.appendChild(sidebarBtnEnd)
+
 
 
 // ----- LocalStorage end -----
@@ -131,7 +138,7 @@ searchBtn.addEventListener('click', function (event) {
   fetchLocationWeather(startCity, 'startWeatherData')
   fetchLocationWeather(endCity, 'endWeatherData')
   clientSideStorage()
-  sidebarSeachedBtn()
+  // sidebarSeachedBtn()
 
 
 })
@@ -140,7 +147,9 @@ searchBtn.addEventListener('click', function (event) {
 var mini = true;
 document.getElementById("sidebarTitle").style.display = "none";
 document.getElementById("searchIcon").style.display = "";
-sidebarBtn.style.display = "none";
+sidebarBtnStart.style.display = "none";
+sidebarBtnEnd.style.display = "none";
+document.querySelector('hr').style.display = 'none';
 
 function toggleSidebar() {
 
@@ -150,7 +159,9 @@ function toggleSidebar() {
     document.getElementById("main").style.marginLeft = "250px";
     document.getElementById("searchIcon").style.display = "none";
     document.getElementById("sidebarTitle").style.display = "";
-    sidebarBtn.style.display = "";
+    sidebarBtnStart.style.display = "";
+    sidebarBtnEnd.style.display = "";
+    document.querySelector('hr').style.display = '';
     this.mini = false;
   } else {
     console.log("closing sidebar");
@@ -158,7 +169,9 @@ function toggleSidebar() {
     document.getElementById("main").style.marginLeft = "65px";
     document.getElementById("sidebarTitle").style.display = "none";
     document.getElementById("searchIcon").style.display = "";
-    sidebarBtn.style.display = "none";
+    sidebarBtnStart.style.display = "none";
+    sidebarBtnEnd.style.display = "none";
+    document.querySelector('hr').style.display = 'none';
     this.mini = true;
   }
 }

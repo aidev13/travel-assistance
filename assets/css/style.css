@@ -186,3 +186,7 @@ body {
 .sidebarBtnStyle:hover {
 border-color: #1779ba;
 }
+
+hr {
+  width:60%;
+}
